@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id "au.com.dius.pact" version "4.3.10"
 }
 
 repositories {
@@ -12,9 +13,14 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
     implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation "io.quarkus:quarkus-rest-client-reactive-jackson"
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'au.com.dius.pact.consumer:junit5:4.3.13'
+    testImplementation 'org.json:json:20220320' // To fix class file for org.json.JSONObject not found. Reference https://github.com/pact-foundation/pact-jvm/issues/1566
+
+
 }
 
 group 'me.spike'
@@ -32,4 +38,14 @@ compileJava {
 
 compileTestJava {
     options.encoding = 'UTF-8'
+}
+
+
+//Refer https://github.com/pact-foundation/pact-jvm/tree/master/provider/gradle
+pact {
+
+    publish {
+        pactBrokerUrl = 'http://localhost:9292'
+    }
+
 }

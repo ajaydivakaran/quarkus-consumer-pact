@@ -4,6 +4,10 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+### Software requirements
+* JDK 17
+* Docker
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
@@ -31,30 +35,13 @@ If you want to build an _über-jar_, execute the following command:
 
 The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
 
-## Creating a native executable
 
-You can create a native executable using: 
+### To publish generated pacts
 ```shell script
-./gradlew build -Dquarkus.package.type=native
+./gradlew pactPublish
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./build/quarkus-consumer-pact-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
-
-## Related Guides
-
-- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### References
+* https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
+* https://github.com/skattela/pact-workshop-jvm-quarkus
+* https://github.com/pact-foundation/pact-jvm/tree/master/provider/gradle
