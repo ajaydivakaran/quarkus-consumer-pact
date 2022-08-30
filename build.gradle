@@ -17,7 +17,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
-    testImplementation 'au.com.dius.pact.consumer:junit5:4.3.13'
+    testImplementation 'au.com.dius.pact.consumer:junit5:4.3.14'
     testImplementation 'org.json:json:20220320' // To fix class file for org.json.JSONObject not found. Reference https://github.com/pact-foundation/pact-jvm/issues/1566
 
 
