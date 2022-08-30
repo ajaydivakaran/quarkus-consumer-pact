@@ -45,3 +45,11 @@ The application, packaged as an _über-jar_, is now runnable using `java -jar bu
 * https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
 * https://github.com/skattela/pact-workshop-jvm-quarkus
 * https://github.com/pact-foundation/pact-jvm/tree/master/provider/gradle
+
+#### To publish generated pacts using CLI
+```shell
+export PACT_BROKER_BASE_URL="http://localhost:9292"
+export GIT_BRANCH=feature1
+export GIT_COMMIT=commit1
+docker run -it --rm --network host -v ${PWD}/build/pacts:/tmp/pacts -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest publish /tmp/pacts --consumer-app-version $GIT_COMMIT --branch $GIT_BRANCH
+```
