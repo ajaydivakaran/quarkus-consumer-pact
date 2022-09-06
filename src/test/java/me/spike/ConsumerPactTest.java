@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 @QuarkusTest
 @ExtendWith(PactConsumerTestExt.class)
-@PactTestFor(providerName = "Provider", pactVersion = PactSpecVersion.V4)
+@PactTestFor(pactVersion = PactSpecVersion.V4)
 public class ConsumerPactTest {
 
     @Inject
