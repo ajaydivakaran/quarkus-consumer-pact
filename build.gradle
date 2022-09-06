@@ -44,6 +44,10 @@ compileTestJava {
 //Refer https://github.com/pact-foundation/pact-jvm/tree/master/provider/gradle
 pact {
 
+    broker {
+        pactBrokerUrl = 'http://localhost:9292/'
+    }
+
     publish {
         pactBrokerUrl = 'http://localhost:9292'
     }

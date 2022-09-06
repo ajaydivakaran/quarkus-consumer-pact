@@ -51,5 +51,28 @@ The application, packaged as an _über-jar_, is now runnable using `java -jar bu
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 export GIT_BRANCH=feature1
 export GIT_COMMIT=commit1
-docker run -it --rm --network host -v ${PWD}/build/pacts:/tmp/pacts -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest publish /tmp/pacts --consumer-app-version $GIT_COMMIT --branch $GIT_BRANCH
+docker run -it --rm --network host -v ${PWD}/build/pacts:/tmp/pacts -e PACT_BROKER_BASE_URL \
+pactfoundation/pact-cli:latest publish /tmp/pacts --consumer-app-version $GIT_COMMIT --branch $GIT_BRANCH
 ```
+
+#### Create environment
+```shell
+export PACT_BROKER_BASE_URL="http://localhost:9292"
+docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
+create-environment --name "e2e" --display-name "E2E" --no-production
+```
+
+#### Can I deploy consumer
+```shell
+export PACT_BROKER_BASE_URL="http://localhost:9292"
+docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
+can-i-deploy --pacticipant Consumer --version commit1 --to-environment e2e
+```
+
+#### Record deployment
+```shell
+export PACT_BROKER_BASE_URL="http://localhost:9292"
+docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
+record-deployment --pacticipant Consumer --version commit1 --environment e2e 
+```
+
