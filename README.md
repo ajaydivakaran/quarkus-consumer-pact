@@ -37,22 +37,38 @@ The application, packaged as an _über-jar_, is now runnable using `java -jar bu
 
 
 ### To publish generated pacts
+#### using Gradle
 ```shell script
 ./gradlew pactPublish
 ```
 
-### References
+######  References
 * https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
 * https://github.com/skattela/pact-workshop-jvm-quarkus
 * https://github.com/pact-foundation/pact-jvm/tree/master/provider/gradle
 
-#### To publish generated pacts using CLI
+
+#### using Docker CLI
+
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
-export GIT_BRANCH=feature1
-export GIT_COMMIT=commit1
+export GIT_BRANCH=main
+export APP_VERSION=1.0.0
 docker run -it --rm --network host -v ${PWD}/build/pacts:/tmp/pacts -e PACT_BROKER_BASE_URL \
-pactfoundation/pact-cli:latest publish /tmp/pacts --consumer-app-version $GIT_COMMIT --branch $GIT_BRANCH
+pactfoundation/pact-cli:latest publish /tmp/pacts --consumer-app-version $APP_VERSION --branch $GIT_BRANCH
+```
+
+#### using standalone executable 
+
+######  References
+* [Refer executable documentation](https://github.com/pact-foundation/pact-ruby-standalone#pact-broker-client)
+* [Installation](https://github.com/pact-foundation/pact-ruby-standalone/releases)
+
+```shell
+export PACT_BROKER_BASE_URL="http://localhost:9292"
+export GIT_BRANCH=main
+export APP_VERSION=1.0.0
+<standalone-exec-folder>/bin/pact-broker publish ./build/pacts --consumer-app-version $APP_VERSION --branch $GIT_BRANCH
 ```
 
 #### Create environment

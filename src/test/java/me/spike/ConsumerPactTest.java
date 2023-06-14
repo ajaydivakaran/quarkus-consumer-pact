@@ -42,7 +42,6 @@ public class ConsumerPactTest {
     @PactTestFor(pactMethod = "greet", port = "8080")
     void testHelloEndpoint() {
         Greeting actualGreeting = greetingService.getGreeting();
-        System.out.println(actualGreeting.greeting);
         Assertions.assertNotNull(actualGreeting.greeting);
     }
 
