@@ -71,21 +71,21 @@ export APP_VERSION=1.0.0
 <standalone-exec-folder>/bin/pact-broker publish ./build/pacts --consumer-app-version $APP_VERSION --branch $GIT_BRANCH
 ```
 
-#### Create environment
+### Create environment
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
 create-environment --name "e2e" --display-name "E2E" --no-production
 ```
 
-#### Can I deploy consumer
+### Can I deploy consumer
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
 can-i-deploy --pacticipant Consumer --version commit1 --to-environment e2e
 ```
 
-#### Record deployment
+### Record deployment
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
