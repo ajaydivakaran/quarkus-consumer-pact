@@ -72,23 +72,44 @@ export APP_VERSION=1.0.0
 ```
 
 ### Create environment
+
+#### using Docker CLI
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
 create-environment --name "e2e" --display-name "E2E" --no-production
 ```
 
+#### using standalone executable
+```shell
+<standalone-exec-folder>/bin/pact-broker create-environment --broker-base-url=http://localhost:9292/ --name=e2e --display-name=E2E --no-production
+<standalone-exec-folder>/bin/pact-broker create-environment --broker-base-url=http://localhost:9292/ --name=prod --display-name=PROD --production
+```
+
 ### Can I deploy consumer
+
+#### using Docker CLI
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
 can-i-deploy --pacticipant Consumer --version commit1 --to-environment e2e
 ```
 
+#### using standalone executable
+```shell
+<standalone-exec-folder>/bin/pact-broker can-i-deploy --broker-base-url=http://localhost:9292 --pacticipant Consumer --version 1.0.0 --to-environment e2e
+```
+
 ### Record deployment
+
+#### using Docker CLI
 ```shell
 export PACT_BROKER_BASE_URL="http://localhost:9292"
 docker run -it --rm --network host -e PACT_BROKER_BASE_URL pactfoundation/pact-cli:latest broker \
-record-deployment --pacticipant Consumer --version commit1 --environment e2e 
+record-deployment --pacticipant Consumer --version 1.0.0 --environment e2e 
 ```
 
+#### using standalone executable
+```shell
+<standalone-exec-folder>/bin/pact-broker record-deployment --pacticipant Consumer --version 1.0.0 --environment e2e
+```
