@@ -18,6 +18,6 @@ public class GreetingResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Greeting hello(){
-        return greetingService.getGreeting();
+        return greetingService.getGreeting("John");
     }
 }

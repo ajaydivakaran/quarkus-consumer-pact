@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'io.quarkus'
-    id "au.com.dius.pact" version "4.3.10"
+    id "au.com.dius.pact" version "4.6.0"
 }
 
 repositories {
@@ -17,8 +17,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
-    testImplementation 'au.com.dius.pact.consumer:junit5:4.3.14'
-    testImplementation 'org.json:json:20220320' // To fix class file for org.json.JSONObject not found. Reference https://github.com/pact-foundation/pact-jvm/issues/1566
+    testImplementation 'au.com.dius.pact.consumer:junit5:4.6.0'
+//    testImplementation 'org.json:json:20220320' // To fix class file for org.json.JSONObject not found. Reference https://github.com/pact-foundation/pact-jvm/issues/1566
 
 
 }
